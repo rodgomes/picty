@@ -1717,6 +1717,7 @@
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
+	select,
 	textarea {
 		-moz-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		-webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
@@ -1739,12 +1740,14 @@
 		input[type="text"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
+		select:focus,
 		textarea:focus {
 			border-color: #83d3c9;
 		}
 
 	input[type="text"],
 	input[type="password"],
+	select,
 	input[type="email"] {
 		line-height: 1em;
 	}
@@ -1857,6 +1860,15 @@
 				.icon.circle.fa-twitter:hover {
 					background: #7fb7d2;
 				}
+
+				.icon.circle.fa-instagram {
+					background: #125688;
+					color: #fff;
+				}
+
+					.icon.circle.fa-instagram:hover {
+						background: #125688;
+					}
 
 			.icon.circle.fa-facebook {
 				background: #7490c3;

@@ -1,1 +1,39 @@
-<!-- just a comment -->
+<article id="main">
+
+  <header class="special container">
+    <span class="icon fa-search"></span>
+    <h2>Search</h2>
+    <p>You can just search by city/town name and choose a month! Easy, right?</p>
+  </header>
+  <!-- One -->
+    <section class="wrapper style4 special container 75%">
+
+      <!-- Content -->
+        <div class="content">
+          <form>
+            <div class="row 50%">
+              <div class="12u">
+                <input type="text" name="city" placeholder="New York" />
+              </div>
+              <div class="12u">
+
+                <select name="month">
+                    <option>January</option>
+                    <option>December</option>
+                </select>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="12u">
+                <ul class="buttons">
+                  <li><input type="submit" class="special" value="Show me some images!" /></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div>
+
+    </section>
+
+</article>
