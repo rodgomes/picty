@@ -12,8 +12,8 @@
         <div class="content">
           <form>
             <div class="row 50%">
-              <div class="12u">
-                <input type="text" name="city" placeholder="New York" />
+              <div id="cityinput" class="12u">
+                  <input type="text" name="city" placeholder="New York" />
               </div>
               <div class="12u">
 
