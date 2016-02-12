@@ -38,8 +38,7 @@ defmodule Picty.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
-     {:httpotion, "~> 2.1.0"},
-     {:jsx, "~> 2.8.0"},]
+     {:httpotion, "~> 2.1.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

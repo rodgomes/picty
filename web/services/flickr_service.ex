@@ -1,9 +1,9 @@
 defmodule Picty.FlickrAPI do
-  # use HTTPotion.Base
-  alias Picty.HTTPotionJson
 
   def search(cityName, month) do
-    HTTPotionJson.get(mount_url(cityName, month), [timeout: 20_000])
+    response = HTTPotion.get(mount_url(cityName, month), [timeout: 20_000])
+    #TODO check errors, etc
+    response.body
   end
 
   defp mount_url(cityName, month) do
