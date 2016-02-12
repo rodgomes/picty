@@ -19,8 +19,9 @@ defmodule Picty.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Picty do
-  #   pipe_through :api
-  # end
+  scope "/api", Picty do
+    pipe_through :api
+    get "/search", SearchController, :search
+  end
+
 end

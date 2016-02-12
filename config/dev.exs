@@ -40,3 +40,5 @@ config :picty, Picty.Repo,
   database: "picty_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :picty, :flickr_key, System.get_env("FLICKR_KEY")
