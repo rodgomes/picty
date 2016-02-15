@@ -43,9 +43,38 @@
 						in February?
 						<br />
 
+						<form>
+							<div class="row 50%">
+								<div id="cityinput" class="12u">
+										<select name="cityName" id="city-options">
+
+										</select>
+								</div>
+								<div class="12u">
+
+									<select name="month">
+											<option>January</option>
+											<option>February</option>
+											<option>March</option>
+											<option>April</option>
+											<option>May</option>
+											<option>June</option>
+											<option>July</option>
+											<option>August</option>
+											<option>September</option>
+											<option>October</option>
+											<option>November</option>
+											<option>December</option>
+									</select>
+
+								</div>
+							</div>
+
+						</form>
+
 						<footer>
 							<ul class="buttons vertical">
-								<li><a href="#main" class="button fit scrolly">Tell me how!</a></li>
+								<li><a href="#main" class="button fit scrolly">Show me some pictures!</a></li>
 							</ul>
 						</footer>
 					</div>
@@ -71,7 +100,8 @@
 
 		</div>
 		<!-- Scripts -->
-    <script type="text/javascript" src="<%= static_path(@conn, "/js/app.js") %>" />
+		<script type="text/javascript" src="<%= static_path(@conn, "/js/vendor.js") %>" ></script>
+    <script type="text/javascript" src="<%= static_path(@conn, "/js/app.js") %>" ></script>
 
 	</body>
 </html>

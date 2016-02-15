@@ -22,6 +22,7 @@ defmodule Picty.Router do
   scope "/api", Picty do
     pipe_through :api
     get "/search.json", SearchController, :search
+    get "/locations.json", SearchController, :suggested_locations
   end
 
 end

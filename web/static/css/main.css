@@ -1809,6 +1809,15 @@
 			margin: 0 0 2em 0;
 		}
 
+		.image.featured-less-space {
+			display: block;
+		}
+
+		.image.featured-less-space img {
+			display: block;
+			width: 100%;
+		}
+
 			.image.featured img {
 				display: block;
 				width: 100%;

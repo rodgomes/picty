@@ -4,4 +4,8 @@ defmodule Picty.SearchView do
   def render("search.json", %{"result" =>result}) do
     result
   end
+
+  def render("locations.json", %{"result" =>result}) do
+    result
+  end
 end

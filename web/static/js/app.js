@@ -19,3 +19,18 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+function loadCities(){
+
+  $.getJSON("/api/locations.json", function(result) {
+        console.log("Getting location from server")
+        var options = $("#city-options");
+        $.each(result, function() {
+            options.append($("<option />").val(this).text(this));
+        });
+  });
+}
+
+
+$(function() {
+    loadCities()
+});
