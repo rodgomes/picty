@@ -1,4 +1,4 @@
-<article id="main">
+<article id="main" class="search-result">
 
   <header class="special container">
     <span class="icon fa-search"></span>
@@ -7,39 +7,11 @@
   </header>
   <!-- One -->
     <section class="wrapper style4 special container 100%">
-
-      <div class="row">
-        <div class="6u 12u(narrower)">
-
-          <section>
-            <a href="#" class="image featured2"><img src="images/pic01.jpg" alt="" /></a>
-            <header>
-              <h3>A Really Fast Train</h3>
-            </header>
-          </section>
-
-        </div>
-        <div class="6u 12u(narrower)">
-
-          <section>
-            <a href="#" class="image featured-less-space"><img src="images/pic02.jpg" alt="" /></a>
-            <header>
-              <h3>An Airport Terminal</h3>
-            </header>
-          </section>
-
-        </div>
-
-        <div class="6u 12u(narrower)">
-
-          <section>
-            <a href="#" class="image featured-less-space"><img src="images/pic02.jpg" alt="" /></a>
-            <header>
-              <h3>An Airport Terminal</h3>
-            </header>
-          </section>
-
-        </div>
+      <div class="photoset-grid" data-layout="13">
+        <!-- <img src="image1.jpg">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
+        <img src="image4.jpg"> -->
       </div>
 
     </section>

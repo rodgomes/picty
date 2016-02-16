@@ -52,7 +52,7 @@
 								</div>
 								<div class="12u">
 
-									<select name="month">
+									<select name="month" id="month">
 											<option>January</option>
 											<option>February</option>
 											<option>March</option>
@@ -74,7 +74,7 @@
 
 						<footer>
 							<ul class="buttons vertical">
-								<li><a href="#main" class="button fit scrolly">Show me some pictures!</a></li>
+								<li><a href="#main" id="search_btn" class="button fit scrolly">Show me some pictures!</a></li>
 							</ul>
 						</footer>
 					</div>

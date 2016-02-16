@@ -22,7 +22,6 @@ import "phoenix_html"
 function loadCities(){
 
   $.getJSON("/api/locations.json", function(result) {
-        console.log("Getting location from server")
         var options = $("#city-options");
         $.each(result, function() {
             options.append($("<option />").val(this).text(this));
@@ -30,7 +29,52 @@ function loadCities(){
   });
 }
 
+function search(){
+
+  var params = {
+      "city": $("#city-options :selected").text(),
+      "month": $("#month :selected").text()
+   }
+
+   $(".search-result").show();
+
+  $.getJSON("/api/search.json", params, function(result) {
+
+      var options = $("#city-options");
+      var jsonResponse = $.parseJSON(result);
+
+      if (jsonResponse.photos && jsonResponse.photos.photo) {
+        var count = 0,
+        showMax = 18;
+
+        $.each(jsonResponse.photos.photo, function() {
+            var url = "https://farm" +this.farm + ".staticflickr.com/"+ this.server+ "/"+this.id+"_" + this.secret+"_m.jpg";
+            var flickrUrl = "https://flickr.com/"+this.owner+"/"+this.id;
+            var rowDiv = $(".photoset-grid");
+            count = count +1;
+            if (count < showMax){
+              rowDiv.append(getImageHtml(flickrUrl, url, this.title));
+            }
+        });
+
+        $('.photoset-grid').photosetGrid({
+          layout: '332432',
+          width: '100%',
+          gutter: '5px',
+        });
+    }
+
+  });
+}
+
+function getImageHtml(flickrUrl, imageUrl, title){
+  return "<a href='"+ flickrUrl+ "'><img alt='" +title+ "' src='"+imageUrl+"'/></a>";
+}
 
 $(function() {
-    loadCities()
+    $(".search-result").hide();
+    loadCities();
+    $("#search_btn").on('click', function (e) {
+			search();
+		});
 });
