@@ -36,7 +36,7 @@ function search(){
       "month": $("#month :selected").text()
    }
 
-   $(".search-result").show();
+  $(".search-result").show();
 
   $.getJSON("/api/search.json", params, function(result) {
 
@@ -44,26 +44,30 @@ function search(){
       var jsonResponse = $.parseJSON(result);
 
       if (jsonResponse.photos && jsonResponse.photos.photo) {
-        var count = 0,
-        showMax = 18;
+        renderSearchResult(jsonResponse.photos.photo);
+      }
 
-        $.each(jsonResponse.photos.photo, function() {
-            var url = "https://farm" +this.farm + ".staticflickr.com/"+ this.server+ "/"+this.id+"_" + this.secret+"_m.jpg";
-            var flickrUrl = "https://flickr.com/"+this.owner+"/"+this.id;
-            var rowDiv = $(".photoset-grid");
-            count = count +1;
-            if (count < showMax){
-              rowDiv.append(getImageHtml(flickrUrl, url, this.title));
-            }
-        });
+  });
+}
 
-        $('.photoset-grid').photosetGrid({
-          layout: '332432',
-          width: '100%',
-          gutter: '5px',
-        });
-    }
+function renderSearchResult(photos){
+  var count = 0,
+  showMax = 18;
 
+  $.each(photos, function() {
+      var url = "https://farm" +this.farm + ".staticflickr.com/"+ this.server+ "/"+this.id+"_" + this.secret+"_m.jpg";
+      var flickrUrl = "https://flickr.com/"+this.owner+"/"+this.id;
+      var rowDiv = $(".photoset-grid");
+      count = count +1;
+      if (count < showMax){
+        rowDiv.append(getImageHtml(flickrUrl, url, this.title));
+      }
+  });
+
+  $('.photoset-grid').photosetGrid({
+    layout: '332432',
+    width: '100%',
+    gutter: '5px',
   });
 }
 
