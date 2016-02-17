@@ -25,61 +25,6 @@
 					</nav>
 				</header>
 
-			<!-- Banner -->
-				<section id="banner">
-
-					<!--
-						".inner" is set up as an inline-block so it automatically expands
-						in both directions to fit whatever's inside it. This means it won't
-						automatically wrap lines, so be sure to use line breaks where
-						appropriate (<br />).
-					-->
-					<div class="inner">
-						<header>
-							<h2>PICTY</h2>
-						</header>
-						<p>Wanna see how is <strong>Amsterdam</strong>
-						<br />
-						in February?
-						<br />
-
-						<form>
-							<div class="row 50%">
-								<div id="cityinput" class="12u">
-										<select name="cityName" id="city-options">
-
-										</select>
-								</div>
-								<div class="12u">
-
-									<select name="month" id="month">
-											<option value="01">January</option>
-											<option value="02">February</option>
-											<option value="03">March</option>
-											<option value="04">April</option>
-											<option value="05">May</option>
-											<option value="06">June</option>
-											<option value="07">July</option>
-											<option value="08">August</option>
-											<option value="09">September</option>
-											<option value="10">October</option>
-											<option value="11">November</option>
-											<option value="12">December</option>
-									</select>
-
-								</div>
-							</div>
-
-						</form>
-
-						<footer>
-							<ul class="buttons vertical">
-								<li><a href="#main" id="search_btn" class="button fit scrolly">Show me some pictures!</a></li>
-							</ul>
-						</footer>
-					</div>
-				</section>
-
       <!-- Main -->
       <%= render @view_module, @view_template, assigns %>
 
