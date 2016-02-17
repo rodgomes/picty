@@ -36,6 +36,7 @@ function search(){
       "month": $("#month :selected").val()
    }
 
+  $("body").addClass("loading");
   $(".search-result").show();
 
   $.getJSON("/api/search.json", params, function(result) {
@@ -67,6 +68,8 @@ function renderSearchResult(photos){
 
   $("#photo-grid-container").empty();
   $("#photo-grid-container").append(rowDiv);
+  $("body").removeClass("loading");
+
   $(rowDiv).photosetGrid({
     layout: '332432',
     width: '100%',
