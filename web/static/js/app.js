@@ -33,7 +33,7 @@ function search(){
 
   var params = {
       "city": $("#city-options :selected").text(),
-      "month": $("#month :selected").text()
+      "month": $("#month :selected").val()
    }
 
   $(".search-result").show();
@@ -52,19 +52,22 @@ function search(){
 
 function renderSearchResult(photos){
   var count = 0,
-  showMax = 18;
+  showMax = 18,
+  rowDiv = $("<div />");
 
   $.each(photos, function() {
       var url = "https://farm" +this.farm + ".staticflickr.com/"+ this.server+ "/"+this.id+"_" + this.secret+"_m.jpg";
       var flickrUrl = "https://flickr.com/"+this.owner+"/"+this.id;
-      var rowDiv = $(".photoset-grid");
+
       count = count +1;
       if (count < showMax){
         rowDiv.append(getImageHtml(flickrUrl, url, this.title));
       }
   });
 
-  $('.photoset-grid').photosetGrid({
+  $("#photo-grid-container").empty();
+  $("#photo-grid-container").append(rowDiv);
+  $(rowDiv).photosetGrid({
     layout: '332432',
     width: '100%',
     gutter: '5px',

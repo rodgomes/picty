@@ -5,15 +5,8 @@
     <h2>Search result</h2>
 
   </header>
-  <!-- One -->
-    <section class="wrapper style4 special container 100%">
-      <div class="photoset-grid" data-layout="13">
-        <!-- <img src="image1.jpg">
-        <img src="image2.jpg">
-        <img src="image3.jpg">
-        <img src="image4.jpg"> -->
-      </div>
-
+    <section id="photo-grid-container" class="wrapper style4 special container 100%">
+      <div class="photoset-grid"></div>
     </section>
 
 </article>
