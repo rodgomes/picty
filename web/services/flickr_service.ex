@@ -15,7 +15,7 @@ defmodule Picty.FlickrAPI do
     query_params = %{
       :method => "flickr.photos.search",
       :api_key => api_key,
-      :text => cityName,
+      :tags => cityName,
       :min_taken_date => from,
       :max_taken_date => to,
       :format => "json",
