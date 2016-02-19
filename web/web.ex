@@ -52,6 +52,7 @@ defmodule Picty.Web do
       import Picty.Router.Helpers
       import Picty.ErrorHelpers
       import Picty.Gettext
+      import Picty.CssClassHelper
     end
   end
 

@@ -15,12 +15,12 @@
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<header id="header" class="alt">
+				<header id="header" class="<%= header_class(@conn) %>">
 					<h1 id="logo"><a href="index.html">Picty <span> - Picture a city</span></a></h1>
 					<nav id="nav">
 						<ul>
-							<li class="current"><a href="index.html">Home</a></li>
-							<li><a href="#" class="button special">About</a></li>
+							<li class ="<%= active_class(@conn, page_path(Picty.Endpoint, :index)) %>"><a href="<%= page_path(Picty.Endpoint, :index) %>">Home</a></li>
+							<li class="<%= active_class(@conn, page_path(Picty.Endpoint, :about)) %>"><a href="<%= page_path(Picty.Endpoint, :about) %>" class="button special">About</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -47,6 +47,6 @@
 		<!-- Scripts -->
 		<script type="text/javascript" src="<%= static_path(@conn, "/js/vendor.js") %>" ></script>
     <script type="text/javascript" src="<%= static_path(@conn, "/js/app.js") %>" ></script>
-
+		<%= render_existing view_module(@conn), "scripts.html", assigns %>
 	</body>
 </html>

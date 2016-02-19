@@ -17,10 +17,12 @@ defmodule Picty.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/about", PageController, :about
   end
 
   scope "/api", Picty do
     pipe_through :api
+    
     get "/search.json", SearchController, :search
     get "/locations.json", SearchController, :suggested_locations
   end
