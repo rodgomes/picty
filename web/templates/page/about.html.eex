@@ -16,8 +16,7 @@
 								<h3>About</h3>
 							</header>
 							<p>Well, this is a personal project which the only intend is to learn a little bit of Elixir and Phoenix Framework.</p>
-							<p>As I really like photography and traveling I thought this could be a good idea to play a little bit with both.</p>
-
+							<p>As I really like photography and traveling I thought this could be a good idea to play a little bit with both. So the purpose of this site (besides helping me learn Phoenix) is to provide an easy way to show how a touristic place looks like in a given month. For now, we only have one source which is Flick API (because they are the only one that offers search by taken date), but in the future we can add other sources as well.</p>
 
 						</section>
 					</div>
