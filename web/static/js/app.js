@@ -23,8 +23,14 @@ function loadCities(){
 
   $.getJSON("/api/locations.json", function(result) {
         var options = $("#city-options");
+        var suggestion = $(options).data("suggestion");
+
         $.each(result, function() {
-            options.append($("<option />").val(this).text(this));
+            var option = $("<option />").val(this).text(this);
+            if(this === suggestion){
+                option.attr('selected','selected');
+            }
+            options.append(option);
         });
   });
 }
@@ -53,7 +59,7 @@ function search(){
 
 function renderSearchResult(photos){
   var count = 0,
-  showMax = 18,
+  showMax = 28,
   rowDiv = $("<div />");
 
   $.each(photos, function() {
@@ -71,14 +77,14 @@ function renderSearchResult(photos){
   $("body").removeClass("loading");
 
   $(rowDiv).photosetGrid({
-    layout: '332432',
+    layout: '323432343',
     width: '100%',
     gutter: '5px',
   });
 }
 
 function getImageHtml(flickrUrl, imageUrl, title){
-  return "<a href='"+ flickrUrl+ "'><img alt='" +title+ "' src='"+imageUrl+"'/></a>";
+  return "<a href='"+ flickrUrl+ "' target='_blank'><img alt='" +title+ "' src='"+imageUrl+"'/></a>";
 }
 
 $(function() {
