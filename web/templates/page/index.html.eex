@@ -19,7 +19,7 @@
       <form>
         <div class="row 50%">
           <div id="cityinput" class="12u">
-              <select name="cityName" id="city-options" data-suggestion="<%= @location %>">
+              <select name="cityName" id="city-options" data-suggestion="<%= assigns[:location] %>">
 
               </select>
           </div>

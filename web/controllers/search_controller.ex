@@ -11,10 +11,6 @@ defmodule Picty.SearchController do
     render conn, "search.json", %{"result" => result}
   end
 
-  def suggested_locations(conn, _params) do
-      render conn, "locations.json", %{"result" => FlickrAPI.get_allowed_locations()}
-  end
-
   defp get_period(month) do
     # check the month. If it is before the current month, the period should be related
     # to last year, otherwise use the current year
