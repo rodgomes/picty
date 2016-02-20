@@ -11,9 +11,9 @@
       <header>
         <h2>PICTY</h2>
       </header>
-      <p>Wanna see how is <strong>Amsterdam</strong>
+      <p>Wanna see how is <strong><%= assigns[:location] || "Amsterdam" %></strong>
       <br />
-      in February?
+      in January?
       <br />
 
       <form>

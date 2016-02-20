@@ -6,10 +6,6 @@ defmodule Picty.FlickrAPI do
     response.body
   end
 
-  def get_allowed_locations() do
-    ["Amsterdam", "Paris", "Berlin", "Prague", "London", "Rio de Janeiro"]
-  end
-
   defp mount_url(cityName, {from, to}) do
     api_key = Application.get_env(:picty, :flickr_key)
     query_params = %{
@@ -19,7 +15,8 @@ defmodule Picty.FlickrAPI do
       :min_taken_date => from,
       :max_taken_date => to,
       :format => "json",
-      :nojsoncallback => 1
+      :nojsoncallback => 1,
+      :sort => "interestingness-asc"
     }
     "https://api.flickr.com/services/rest/?" <> URI.encode_query(query_params)
   end
