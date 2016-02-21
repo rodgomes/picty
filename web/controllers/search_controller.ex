@@ -1,13 +1,14 @@
 defmodule Picty.SearchController do
   use Picty.Web, :controller
-  alias Picty.FlickrAPI
+  # alias Picty.FlickrAPI
   alias Timex.Date
+  @flickr_api Application.get_env(:picty, :flickr_api)
 
   def search(conn, params) do
     cityName = Dict.get(params, "city")
     month = Dict.get(params, "month")
 
-    result = FlickrAPI.search(cityName, get_period(month))
+    result = @flickr_api.search(cityName, get_period(month))
     render conn, "search.json", %{"result" => result}
   end
 
