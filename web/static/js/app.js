@@ -59,7 +59,7 @@ function search(){
 
 function renderSearchResult(photos){
   var count = 0,
-  showMax = 28,
+  showMax = 46,
   rowDiv = $("<div />");
 
   $.each(photos, function() {
@@ -77,7 +77,7 @@ function renderSearchResult(photos){
   $("body").removeClass("loading");
 
   $(rowDiv).photosetGrid({
-    layout: '323432343',
+    layout: '3434343434343',
     width: '100%',
     gutter: '5px',
   });
