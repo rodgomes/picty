@@ -17,3 +17,5 @@ config :picty, Picty.Repo,
   database: "picty_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :picty, :flickr_api, Picty.FlickrAPIFake

@@ -6,7 +6,7 @@ defmodule Picty.FlickrAPI do
     response.body
   end
 
-  defp mount_url(cityName, {from, to}) do
+  def mount_url(cityName, {from, to}) do
     api_key = Application.get_env(:picty, :flickr_key)
     query_params = %{
       :method => "flickr.photos.search",
