@@ -77,10 +77,30 @@ function renderSearchResult(photos){
   $("body").removeClass("loading");
 
   $(rowDiv).photosetGrid({
-    layout: '3434343434343',
+    layout: generateLayout(showMax), //'3434343434343',
     width: '100%',
     gutter: '5px',
   });
+}
+
+function generateLayout(maxPictures){
+  var count = 0,
+  layout = "",
+  iter = 0,
+  numberOfPics = 3;
+
+  while(count <= maxPictures){
+      if(iter % 2 == 0){
+        numberOfPics = 3;
+      } else {
+        numberOfPics = 4;
+      }
+      layout += numberOfPics;
+      count += numberOfPics;
+      iter+=1;
+  }
+  console.log(layout);
+  return layout;
 }
 
 function getImageHtml(flickrUrl, imageUrl, title){
