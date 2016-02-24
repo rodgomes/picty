@@ -63,4 +63,12 @@ defmodule Picty.LocationControllerTest do
     assert redirected_to(conn) == location_path(conn, :index)
     refute Repo.get(Location, location.id)
   end
+
+  test "shows json response with all location names", %{conn: conn} do
+    Repo.insert! %Location{:name => "Amsterdam"}
+    conn = get conn, location_path(conn, :suggested_locations)
+    response = json_response(conn, 200)
+    assert length(response) == 1
+    assert hd(response) == "Amsterdam"
+  end
 end
