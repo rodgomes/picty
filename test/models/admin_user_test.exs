@@ -30,4 +30,11 @@ defmodule Picty.AdminUserTest do
     refute changeset.valid?
   end
 
+  test "password is encrypted" do
+    changeset = AdminUser.changeset(%AdminUser{}, @valid_attrs)
+    assert changeset.valid?
+    assert {:ok, admin_user} = Repo.insert(changeset)
+    assert admin_user.password != @valid_attrs["password"]
+  end
+
 end
