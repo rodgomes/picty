@@ -16,7 +16,7 @@ defmodule Picty.AdminUserTest do
     refute changeset.valid?
   end
 
-  test "changeset with small password attributes" do
+  test "changeset with small password" do
     changeset = AdminUser.changeset(%AdminUser{}, %{password: "a"})
     refute changeset.valid?
   end
