@@ -19,7 +19,7 @@ defmodule Picty.Mixfile do
   def application do
     [mod: {Picty, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpotion, :timex]]
+                    :phoenix_ecto, :postgrex, :httpotion, :timex, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,8 @@ defmodule Picty.Mixfile do
      {:cowboy, "~> 1.0"},
      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
      {:httpotion, "~> 2.1.0"},
-     {:timex, "~> 1.0.1"}]
+     {:timex, "~> 1.0.1"},
+     {:comeonin, "~> 2.1"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

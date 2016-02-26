@@ -1,5 +1,6 @@
 defmodule Picty.AdminUser do
   use Picty.Web, :model
+  alias Comeonin.Bcrypt
 
   schema "admin_users" do
     field :username, :string
@@ -20,5 +21,18 @@ defmodule Picty.AdminUser do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> unique_constraint(:username)
+    |> validate_length(:password, min: 4)
+    |> encrypt_password
   end
+
+  def encrypt_password(changeset) do
+    if changeset.params["password"] do
+      put_change(changeset, :password, Bcrypt.hashpwsalt(changeset.params["password"]))
+    else
+      changeset
+    end
+  end
+
+
 end

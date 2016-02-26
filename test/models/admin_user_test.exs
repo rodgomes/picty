@@ -15,4 +15,19 @@ defmodule Picty.AdminUserTest do
     changeset = AdminUser.changeset(%AdminUser{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "changeset with small password attributes" do
+    changeset = AdminUser.changeset(%AdminUser{}, %{password: "a"})
+    refute changeset.valid?
+  end
+
+  test "changeset with duplicated username" do
+    first = AdminUser.changeset(%AdminUser{}, @valid_attrs)
+    assert {:ok, _} = Repo.insert(first)
+
+    duplicated_user = AdminUser.changeset(%AdminUser{}, @valid_attrs)
+    assert {:error, changeset} = Repo.insert(duplicated_user)
+    refute changeset.valid?
+  end
+
 end
