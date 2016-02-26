@@ -1,6 +1,7 @@
 defmodule Picty.AdminUser do
   use Picty.Web, :model
   alias Comeonin.Bcrypt
+  alias Picty.Repo
 
   schema "admin_users" do
     field :username, :string
@@ -34,5 +35,19 @@ defmodule Picty.AdminUser do
     end
   end
 
+  def check_password(username, password) when not is_nil(username) and not is_nil(password) do
+
+    user = Repo.one(from u in Picty.AdminUser,
+                    where: u.username == ^username,
+                    select: u)
+    cond do
+      user != nil -> Bcrypt.checkpw(password, user.password)
+      user == nil -> Bcrypt.dummy_checkpw
+    end
+  end
+
+  def check_password(username, password) when is_nil(password) or is_nil(username) do
+    Bcrypt.dummy_checkpw
+  end
 
 end

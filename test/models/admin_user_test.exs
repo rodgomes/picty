@@ -37,4 +37,30 @@ defmodule Picty.AdminUserTest do
     assert admin_user.password != @valid_attrs["password"]
   end
 
+  test "check_password encrypted empty username and password" do
+    refute AdminUser.check_password(nil, nil)
+  end
+
+  test "check_password encrypted empty username" do
+    refute AdminUser.check_password(nil, "aaa")
+  end
+
+  test "check_password encrypted wrong password" do
+    changeset = AdminUser.changeset(%AdminUser{}, @valid_attrs)
+    assert changeset.valid?
+    assert {:ok, _} = Repo.insert(changeset)
+    refute AdminUser.check_password(@valid_attrs[:username], "wrong")
+  end
+
+  test "check_password user not found" do
+    refute AdminUser.check_password("wrong username", "does not matter")
+  end
+
+  test "check_password encrypted correct password" do
+    changeset = AdminUser.changeset(%AdminUser{}, @valid_attrs)
+    assert changeset.valid?
+    assert {:ok, admin_user} = Repo.insert(changeset)
+    assert AdminUser.check_password(admin_user.username, @valid_attrs[:password])
+  end
+
 end
