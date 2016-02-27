@@ -13,6 +13,10 @@ defmodule Picty.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin_layout do
+    plug :put_layout, {Picty.LayoutView, :admin}
+  end
+
   scope "/", Picty do
     pipe_through :browser # Use the default browser stack
 
@@ -28,7 +32,7 @@ defmodule Picty.Router do
   end
 
   scope "/admin", Picty do
-    pipe_through :browser
+    pipe_through [:browser, :admin_layout]
     resources "/locations", LocationController
   end
 
