@@ -1,16 +1,10 @@
 defmodule Picty.SessionController do
   use Picty.Web, :controller
 
+  plug :put_layout, "session.html"
 
-  def login(conn, _params) do
-    locations = Repo.all(Location)
-    suggested_location =
-      cond do
-        locations != [] -> Enum.random(Repo.all(Location)).name
-        locations == [] -> ""
-      end
-
-    render conn, "index.html", location: suggested_location
+  def signin(conn, _params) do
+    render conn, "login.html"
   end
 
   def logout(conn, _params) do

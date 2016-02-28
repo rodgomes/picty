@@ -34,6 +34,9 @@ defmodule Picty.Router do
   scope "/admin", Picty do
     pipe_through [:browser, :admin_layout]
     resources "/locations", LocationController
+
+    get "/signin", SessionController, :signin
+
   end
 
 end

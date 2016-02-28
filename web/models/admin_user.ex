@@ -27,7 +27,7 @@ defmodule Picty.AdminUser do
     |> encrypt_password
   end
 
-  def encrypt_password(changeset) do
+  defp encrypt_password(changeset) do
     if changeset.params["password"] do
       put_change(changeset, :password, Bcrypt.hashpwsalt(changeset.params["password"]))
     else
