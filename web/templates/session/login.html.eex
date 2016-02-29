@@ -1,8 +1,13 @@
-<form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
+<%= form_for @changeset, session_path(@conn, :authenticate), [class: "form-signin"], fn f -> %>
+  <h2 class="form-signin-heading">Please sign in</h2>
+
+  <%= label f, :username, class: "sr-only" %>
+  <%= text_input f, :username, class: "form-control", placeholder: "Username" %>
+  <%= error_tag f, :username %>
+
+  <%= label f, :password, class: "sr-only" %>
+  <%= password_input f, :password, class: "form-control", placeholder: "Password" %>
+  <%= error_tag f, :password %>
+
+  <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+<% end %>
