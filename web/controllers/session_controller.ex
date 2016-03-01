@@ -9,7 +9,7 @@ defmodule Picty.SessionController do
     render conn, "login.html", changeset: changeset
   end
 
-  def authenticate(conn, params) do
+  def authenticate(conn, %{"params" => params}) do
 
       changeset = AdminUser.auth_changeset(%AdminUser{}, params)
       if changeset.valid? do

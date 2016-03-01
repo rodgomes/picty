@@ -37,7 +37,7 @@ defmodule Picty.AdminUser do
     if check_password(changeset.params["username"], changeset.params["password"]) do
       changeset
     else
-      add_error(changeset, :auth, "Oops, username and password dont match!")
+      add_error(changeset, :password, "Oops, username and password dont match!")
     end
   end
 
