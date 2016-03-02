@@ -13,7 +13,7 @@ defmodule Picty.SessionControllerTest do
 
   test "authenticate not existing user and show error message", %{conn: conn} do
 
-    conn = post conn, session_path(conn, :authenticate), params: @invalid_attrs
+    conn = post conn, session_path(conn, :authenticate), admin_user: @invalid_attrs
     assert html_response(conn, 200) =~ "Oops, username and password dont match"
 
   end
@@ -25,7 +25,7 @@ defmodule Picty.SessionControllerTest do
     assert {:ok, _} = Repo.insert(changeset)
 
     conn = post conn, session_path(conn, :authenticate),
-     params: %{username: @valid_attrs["username"], password: "wrong"}
+     admin_user: %{username: @valid_attrs["username"], password: "wrong"}
     assert html_response(conn, 200) =~ "Oops, username and password dont match"
 
   end
@@ -37,7 +37,7 @@ defmodule Picty.SessionControllerTest do
     assert changeset.valid?
     assert {:ok, _} = Repo.insert(changeset)
 
-    conn = post conn, session_path(conn, :authenticate), params: @valid_attrs
+    conn = post conn, session_path(conn, :authenticate), admin_user: @valid_attrs
     assert redirected_to(conn, 302) == location_path(conn, :index)
 
   end

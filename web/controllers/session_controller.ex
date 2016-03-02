@@ -10,7 +10,7 @@ defmodule Picty.SessionController do
   end
 
   def authenticate(conn, %{"admin_user" => params}) do
-      IO.inspect params
+      
       changeset = AdminUser.auth_changeset(%AdminUser{}, params)
       if changeset.valid? do
         conn
