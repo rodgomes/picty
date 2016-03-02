@@ -6,7 +6,7 @@ defmodule Picty.LayoutView do
   end
 
   def user_logged_in(conn) do
-    Plug.Conn.get_session(conn, :current_user) != nil
+    Plug.Conn.get_session(conn, :username) != nil
   end
 
 end
