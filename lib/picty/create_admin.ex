@@ -32,10 +32,6 @@ defmodule Mix.Tasks.Picty do
       end
     end
 
-    def get_error(error) do
-        String.replace(elem(error,1), "%{count}", Integer.to_string(elem(error,2)))
-    end
-
     defp parse_args(args) do
         {options, _, _} = OptionParser.parse(args,
           switches: [username: :string, password: :string],
