@@ -49,8 +49,6 @@
         <p class="navbar-text">Signed in as <%= current_user @conn %></p>
         <%= if user_logged_in @conn do %>
           <a href="<%= session_path(Picty.Endpoint, :signout) %>"><button type="button" class="btn btn-default navbar-btn">Sign out</button></a>
-        <% else %>
-          <a href="#"><button type="button" class="btn btn-default navbar-btn">Sign in</button></a>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
