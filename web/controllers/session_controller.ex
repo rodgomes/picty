@@ -10,7 +10,7 @@ defmodule Picty.SessionController do
   end
 
   def authenticate(conn, %{"admin_user" => params}) do
-      
+
       changeset = AdminUser.auth_changeset(%AdminUser{}, params)
       if changeset.valid? do
         conn
@@ -22,8 +22,12 @@ defmodule Picty.SessionController do
       end
   end
 
-  def logout(conn, _params) do
-    render conn, "about.html"
+  def signout(conn, _params) do
+
+    conn
+    |> clear_session
+    |> put_flash(:info, "Logged out successfully!")
+    |> redirect(to: session_path(conn, :signin))
   end
 
 end

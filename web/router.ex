@@ -36,6 +36,8 @@ defmodule Picty.Router do
     resources "/locations", LocationController
 
     get "/signin", SessionController, :signin
+    get "/signout", SessionController, :signout
+    
     post "/authenticate", SessionController, :authenticate
 
   end

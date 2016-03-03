@@ -27,22 +27,26 @@ defmodule Picty.AdminUser do
     |> encrypt_password
   end
 
-  def auth_changeset(model, params  \\ :empty) do
+  def auth_changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> auth
   end
 
   defp auth(changeset) do
-    if check_password(changeset.params["username"], changeset.params["password"]) do
-      changeset
+
+    if changeset.valid?
+        and check_password(changeset.params["username"], changeset.params["password"])
+        or !changeset.valid? do
+        changeset
     else
-      add_error(changeset, :password, "Oops, username and password dont match!")
+        add_error(changeset, :password, "Oops, username and password dont match!")
     end
+
   end
 
   defp encrypt_password(changeset) do
-    if changeset.params["password"] do
+    if changeset.valid? do
       put_change(changeset, :password, Bcrypt.hashpwsalt(changeset.params["password"]))
     else
       changeset
