@@ -2,8 +2,20 @@ defmodule Picty.LocationControllerTest do
   use Picty.ConnCase
 
   alias Picty.Location
+  alias Picty.AdminUser
+
   @valid_attrs %{name: "some content"}
+  @user_valid_attrs %{username: "admin", password: "admin"}
   @invalid_attrs %{}
+
+  setup do
+    changeset = AdminUser.changeset(%AdminUser{}, @user_valid_attrs)
+    assert changeset.valid?
+    assert {:ok, _} = Repo.insert(changeset)
+
+    post conn, session_path(conn, :authenticate), admin_user: @user_valid_attrs
+    assert redirected_to(conn, 302) == location_path(conn, :index)
+  end
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, location_path(conn, :index)

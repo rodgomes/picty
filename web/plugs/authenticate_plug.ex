@@ -10,6 +10,7 @@ defmodule Picty.Plugs.AdminAuthenticate do
       conn
         |> put_flash(:error, "Hey, you can't access that page without logging in first!")
         |> redirect(to: Picty.Router.Helpers.session_path(conn, :signin))
+        |> halt
     else
       conn
     end
