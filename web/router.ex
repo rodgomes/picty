@@ -1,5 +1,6 @@
 defmodule Picty.Router do
   use Picty.Web, :router
+  #alias Picty.Plug.AdminAuthenticate
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,6 +8,10 @@ defmodule Picty.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :admin_authenticate do
+    plug Picty.Plugs.AdminAuthenticate
   end
 
   pipeline :api do
@@ -33,13 +38,18 @@ defmodule Picty.Router do
 
   scope "/admin", Picty do
     pipe_through [:browser, :admin_layout]
-    resources "/locations", LocationController
+
+    # resources "/locations", LocationController
 
     get "/signin", SessionController, :signin
     get "/signout", SessionController, :signout
-    
     post "/authenticate", SessionController, :authenticate
 
+  end
+
+  scope "/admin", Picty do
+    pipe_through [:browser, :admin_layout, :admin_authenticate]
+    resources "/locations", LocationController
   end
 
 end

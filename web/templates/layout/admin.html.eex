@@ -76,6 +76,21 @@
 
 
     <div class="container">
+
+      <% error = get_flash(@conn, :error)%>
+      <% info = get_flash(@conn, :info)%>
+      <%= if error do %>
+          <div class="alert alert-danger">
+              <%= error %>
+          </div>
+      <% end %>
+
+      <%= if info do %>
+          <div class="alert alert-success">
+              <%= info %>
+          </div>
+      <% end %>
+
         <%= render @view_module, @view_template, assigns %>
     </div> <!-- /container -->
 </div>
