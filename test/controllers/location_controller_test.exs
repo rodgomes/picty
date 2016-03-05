@@ -10,11 +10,11 @@ defmodule Picty.LocationControllerTest do
 
   setup do
     changeset = AdminUser.changeset(%AdminUser{}, @user_valid_attrs)
-    assert changeset.valid?
-    assert {:ok, _} = Repo.insert(changeset)
+    Repo.insert!(changeset)
+    conn = conn()
+      |> post(session_path(conn, :authenticate), admin_user: @user_valid_attrs)
 
-    post conn, session_path(conn, :authenticate), admin_user: @user_valid_attrs
-    assert redirected_to(conn, 302) == location_path(conn, :index)
+    {:ok, conn: conn}
   end
 
   test "lists all entries on index", %{conn: conn} do
