@@ -4,7 +4,7 @@ defmodule Picty.Plugs.AdminAuthenticate do
 
   def init(default), do: default
 
-  def call(conn, default) do
+  def call(conn, _default) do
     current_user = get_session(conn, :username)
     if current_user == nil do
       conn
