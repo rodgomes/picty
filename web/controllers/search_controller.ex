@@ -1,6 +1,5 @@
 defmodule Picty.SearchController do
   use Picty.Web, :controller
-  # alias Picty.FlickrAPI
   alias Timex.Date
   @flickr_api Application.get_env(:picty, :flickr_api)
 

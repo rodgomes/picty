@@ -27,6 +27,11 @@ defmodule Picty.AdminUser do
     |> encrypt_password
   end
 
+  @doc """
+  Creates a changeset intended to be used in the authenticate action.
+
+  It only cast the params (if not empty)  and try to authenticate the user.
+  """
   def auth_changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
@@ -53,6 +58,12 @@ defmodule Picty.AdminUser do
     end
   end
 
+  @doc """
+  Checks if a username and password matches.
+  Even if the user cannot be found, the dummy_checkpw is called to mitigate a brute force
+
+  If no username or password is provided, dummy_checkpw is also called
+  """
   def check_password(username, password) when not is_nil(username) and not is_nil(password) do
 
     user = Repo.one(from u in Picty.AdminUser,

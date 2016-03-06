@@ -1,5 +1,11 @@
 defmodule Picty.FlickrAPI do
 
+  @doc """
+  Search the FlickrAPI for images taken in a specific period (typically one month)
+  which contains the given keyword which should also be a city name
+
+  As the API sometimes is slow the timeout is quite high, 20 seconds
+  """
   def search(cityName, period) do
     response = HTTPotion.get(mount_url(cityName, period), [timeout: 20_000])
     #TODO check errors, etc
