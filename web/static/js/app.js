@@ -48,12 +48,9 @@ function search(){
   $.getJSON("/api/search.json", params, function(result) {
 
       var options = $("#city-options");
-      var jsonResponse = $.parseJSON(result);
-
-      if (jsonResponse.photos && jsonResponse.photos.photo) {
-        renderSearchResult(jsonResponse.photos.photo);
+      if (result) {
+        renderSearchResult(result);
       }
-
   });
 }
 
@@ -99,7 +96,6 @@ function generateLayout(maxPictures){
       count += numberOfPics;
       iter+=1;
   }
-  console.log(layout);
   return layout;
 }
 
