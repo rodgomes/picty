@@ -7,24 +7,32 @@ defmodule Picty.FlickrAPI do
   As the API sometimes is slow the timeout is quite high, 20 seconds
   """
   def search(cityName, period) do
-    do_search(cityName, period, [], 1)
+
+    # not ideal yet, because i can make unnecessary calls when one page result
+    # is enough (and might be the case 4 pages is still not enough as well)
+    # ideally each page should be called by the script if needed.
+    # later I'll implement that
+    # and I know HTTPotion has support for async calls, but I wanted to play
+    # with Elixir async/await
+    tasks = [
+      Task.async(fn -> do_search(cityName, period, 1) end),
+      Task.async(fn -> do_search(cityName, period, 2) end),
+      Task.async(fn -> do_search(cityName, period, 3) end),
+      Task.async(fn -> do_search(cityName, period, 4) end),
+    ]
+    List.flatten for resp <- tasks, do: Task.await(resp, 20_000)
   end
 
-  defp do_search(_cityName, _period, result, _page) when length(result) >= 50 do
-    result
-  end
+  defp do_search(cityName, period, page) do
 
-  defp do_search(cityName, period, result, page) do
-    response = HTTPotion.get(mount_url(cityName, period, page), [timeout: 20_000])
+    HTTPotion.get(mount_url(cityName, period, page), [timeout: 20_000])
       |> keep_only_unique_owners
-      |> Enum.concat(result)
-      do_search(cityName, period, response, page+1)
   end
 
   defp keep_only_unique_owners(response) do
 
     parsed = Poison.Parser.parse!(response.body)
-    
+
     parsed["photos"]["photo"]
      |> Enum.group_by(%{}, fn(item) -> item["owner"] end)
      |> Enum.map(fn({_k, v}) -> hd(v) end)
