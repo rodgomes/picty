@@ -2,19 +2,15 @@ defmodule Picty.FlickrAPIFake do
   alias Picty.FlickrAPI
 
   def search(cityName, period) do
-    %{
-      :url => FlickrAPI.mount_url(cityName, period), # added here for testing purpose, not part of real response
-      :photos => %{
-        :photo => [
+    [
           %{
             :farm => 1,
             :server => "fake",
-            :id => 123,
-            :secret => "secret",
-            :owner => "456"
+            :id => elem(period,1),
+            :secret => cityName,        # doing this, so I can check in the controller if the right values were passed
+            :owner => elem(period,0)    # to the api
           }
-        ]
-      }
-    }
+    ]
+
   end
 end

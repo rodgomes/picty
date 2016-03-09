@@ -4,9 +4,9 @@ defmodule Picty.SearchControllerTest do
   test "GET /api/search.json", %{conn: conn} do
     conn = get conn, "/api/search.json?month=01&city=Amsterdam"
     response = json_response(conn, 200)
-    assert length(response["photos"]["photo"]) == 1
-    assert response["url"] =~ "1-31"
-    assert response["url"] =~ "1-01"
-    assert response["url"] =~ "Amsterdam"
+    assert length(response) == 1
+    assert hd(response)["id"]  =~ "1-31"
+    assert hd(response)["owner"] =~ "1-01"
+    assert hd(response)["secret"] =~ "Amsterdam"
   end
 end
