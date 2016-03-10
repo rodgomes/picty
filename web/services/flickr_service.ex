@@ -1,5 +1,5 @@
 defmodule Picty.FlickrAPI do
-
+  require Logger
   @doc """
   Search the FlickrAPI for images taken in a specific period (typically one month)
   which contains the given keyword which should also be a city name
@@ -25,17 +25,29 @@ defmodule Picty.FlickrAPI do
 
   defp do_search(cityName, period, page) do
 
-    HTTPotion.get(mount_url(cityName, period, page), [timeout: 20_000])
+    try do
+      case HTTPotion.get(mount_url(cityName, period, page), [timeout: 20_000]) do
+        %{status_code: 200, body: body} -> {:ok, Poison.Parser.parse!(body)}
+        %{status_code: _status, body: body} ->  {:error, body}
+      end
       |> keep_only_unique_owners
+    rescue
+        e in HTTPotion.HTTPError ->
+        Logger.error "Got error trying to call flickr API. Error #{inspect e}"
+        []
+    end
   end
 
   defp keep_only_unique_owners(response) do
 
-    parsed = Poison.Parser.parse!(response.body)
+    case response do
+      {:ok, parsed_body} -> parsed_body["photos"]["photo"]
+                            |> Enum.group_by(%{}, fn(item) -> item["owner"] end)
+                            |> Enum.map(fn({_k, v}) -> hd(v) end)
+      {:error, body} -> Logger.error "Got error status_code from API: #{inspect body}"
+                        []
+    end
 
-    parsed["photos"]["photo"]
-     |> Enum.group_by(%{}, fn(item) -> item["owner"] end)
-     |> Enum.map(fn({_k, v}) -> hd(v) end)
   end
 
   def mount_url(cityName, {from, to}, page \\ 1) do

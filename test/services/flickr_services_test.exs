@@ -1,5 +1,4 @@
 defmodule Picty.FlickrAPIFake do
-  alias Picty.FlickrAPI
 
   def search(cityName, period) do
     [
